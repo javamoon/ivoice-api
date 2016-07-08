@@ -1,0 +1,89 @@
+[username & {:keys [email join-date]
+:or {join-date (java.util.Date.)}}]
+
+
+#_(ns ivoice-api.view
+  (:require [ring.middleware.cookies :refer :all]
+            [ring.middleware.params :refer :all]
+            [ring.middleware.keyword-params :refer :all]
+            [ring.util.response :refer :all]
+            [compojure.core :refer :all]
+            [compojure.route :as route]
+            [clojure.data.json :as json]
+            [clojure.java.io :as io]
+            [ring.adapter.jetty :refer :all])
+  (:gen-class))
+
+#_(defroutes app-routes
+  (GET "/" [] "Ivoice Server")
+  (context "/ivoice/video" []
+    (GET "/demo" [] (str "Ivoice Demo"))
+    (GET "/play" [] (io/file "/Users/Jun/test/8ZieWwYkLDkiiHnUh1xNNt.mp4") )
+    )
+  #_(route/not-found "Not Found"))
+
+#_(def demo-handler  
+  (-> handler
+      echo-handler
+      wrap-params 
+      wrap-multipart-params))
+
+#_(GET "/public/:path/:resource" [] (-> echo-handler
+                                 (wrap-file "/Users/Jun/workspace/clojure/ivoice-api/public")))
+
+
+
+{
+    : ssl-client-certnil,
+    : protocol"HTTP/1.1",
+    : cookies{
+        "__utma"{
+            : value"111872281.277930019.1459605766.1459670374.1459692072.4"
+        },
+        "__utmz"{
+            : value"111872281.1459605766.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)"
+        }
+    },
+    :remote-addr"0:0:0:0:0:0:0:1",
+    :params {
+        : page "2",
+        : size "6"
+    },
+    :route-params{    
+    },
+    :headers {
+        "cookie""__utma=111872281.277930019.1459605766.1459670374.1459692072.4; __utmz=111872281.1459605766.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)",
+        "cache-control""max-age=0",
+        "accept""text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "upgrade-insecure-requests""1",
+        "connection""keep-alive",
+        "user-agent""Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36",
+        "host""localhost:3001",
+        "accept-encoding""gzip, deflate, sdch",
+        "accept-language""zh-CN,zh;q=0.8,en;q=0.6"
+    },
+    :server-port 3001,
+    :content-length nil,
+    :form-params {
+        
+    },
+    :compojure/route [
+        :get "/hotspot"
+    ],
+    : query-params{
+        "page""2",
+        "size""6"
+    },
+    : content-typenil,
+    : path-info"/hotspot",
+    : character-encodingnil,
+    : context"/ivoice/api",
+    : uri"/ivoice/api/hotspot",
+    : server-name"localhost",
+    : query-string"page=2&size=6",
+    : body#object[
+        org.eclipse.jetty.server.HttpInputOverHTTP0x1dd934c5"HttpInputOverHTTP@1dd934c5"
+    ],
+    : scheme: http,
+    : request-method: get
+}
